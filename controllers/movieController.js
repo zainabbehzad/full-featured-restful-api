@@ -1,5 +1,5 @@
 const { body, validationResult } = require('express-validator'); // Import first
-const Movie = require('../models/Movie.js'); // Add .js extension if required
+const Movie = require('../models/movieModel'); // Add .js extension if required
 
 // Fetch all movies with pagination, filtering, and sorting
 const getMovies = async (req, res) => {
