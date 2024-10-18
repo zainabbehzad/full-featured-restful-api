@@ -61,39 +61,48 @@ To install and set up this project, follow these steps:
 
 2. Change into the project directory:
 
-    cd full-featured-restful-api
+       cd full-featured-restful-api
 
 3. Install the dependencies:
 
-    npm install
+       npm install
 
 4. Create a .env file in the root of the project and add your MongoDB URI:
 
-    MONGODB_URI=your_mongodb_connection_string
+       MONGODB_URI=your_mongodb_connection_string
 
-    PORT=3000
+       PORT=3000
 
 5. Start the server:
 
-    node server.js
+       node server.js
 
 6. The API will be running on 
 
-    http://localhost:3000.
+       http://localhost:3000.
 
 ##API Endpoints 📡
 
 Movies
 
 -GET /api/movies - Fetch all movies (supports filtering and pagination)
+
 -GET /api/movies/:id - Fetch a single movie by ID
+
 -POST /api/movies - Add a new movie
+
 -PUT /api/movies/:id - Update an existing movie
+
 -DELETE /api/movies/:id - Delete a movie
+
 -Query Parameters for GET /api/movies
+
 -page - Page number for pagination (default is 1)
+
 -limit - Number of movies per page (default is 10)
+
 -genre - Filter by genre
+
 -rating - Filter by minimum rating
 
 
@@ -105,21 +114,21 @@ Movies
 
 2. Clone the repository to your local machine:
 
-    https://github.com/zainabbehzad/full-featured-restful-api.git
+       https://github.com/zainabbehzad/full-featured-restful-api.git
 
 3. Create a new branch for your feature or bug fix:
 
-    git checkout -b feature/new-feature
+       git checkout -b feature/new-feature
 
 4. Make your changes in your local environment.
 
 5. Commit your changes with a descriptive message:
 
-    git commit -m 'Add new feature'
+       git commit -m 'Add new feature'
 
 6. Push your changes to your forked repository:
 
-    git push origin feature/new-feature
+       git push origin feature/new-feature
 
 7. Submit a pull request to the original repository.
 
@@ -127,6 +136,8 @@ Movies
 ## Zainab Behzad
 
 -LinkedIn: Zainab Behzad
+
 -GitHub: zainabbehzad
+
 -Email: zainabbehzad03@gmail.com
 
