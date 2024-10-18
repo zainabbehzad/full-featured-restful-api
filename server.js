@@ -17,12 +17,9 @@ app.use(helmet());
 app.use(cors());
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => console.log("Database connected successfully"))
-.catch((error) => console.error("Database connection error:", error));
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => console.log("Database connected successfully"))
+  .catch((error) => console.error("Database connection error:", error));
 
 // Basic route
 app.get("/", (req, res) => {
