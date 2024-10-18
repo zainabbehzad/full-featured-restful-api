@@ -4,7 +4,6 @@
 🌟 The Full-Featured RESTful API is a comprehensive web application designed to provide users with a platform to manage and explore movies. Built using modern web technologies, this application leverages the power of Node.js and Express to deliver a seamless user experience and high performance. 💻✨
 
 ## Demo 📸
-![Screenshot](path/to/screenshot.png) <!-- Replace with the actual path to your screenshot -->
 
 ## Live Demo 🌐
 [Link to Live Demo](http://example.com) <!-- Provide a link if applicable -->
