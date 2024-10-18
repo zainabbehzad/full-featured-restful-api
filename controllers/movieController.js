@@ -1,22 +1,17 @@
-const Movie = require('../models/Movie');
 const { body, validationResult } = require('express-validator');
+const Movie = require('../models/Movie.js');
 
 // Fetch all movies with pagination, filtering, and sorting
 const getMovies = async (req, res, next) => {
   try {
     const { page = 1, limit = 10, genre, rating } = req.query;
-    const query = {};
-    
-    if (genre) {
-      query.genre = genre;
-    }
-    
-    if (rating) {
-      query.rating = { $gte: rating }; // Filter by rating
-    }
+    const query = {
+      ...(genre && { genre }),
+      ...(rating && { rating: { $gte: rating } }),
+    };
 
     const movies = await Movie.find(query)
-      .sort({ releaseYear: 1 }) // Assuming releaseYear is the field for the year of release
+      .sort({ releaseYear: 1 })
       .limit(limit * 1)
       .skip((page - 1) * limit);
 
@@ -58,7 +53,7 @@ const addMovie = [
     try {
       const movie = new Movie(req.body);
       await movie.save();
-      res.status(201).json(movie);
+      return res.status(201).json(movie); // Ensure you return here
     } catch (error) {
       next(error);
     }
@@ -81,7 +76,7 @@ const updateMovie = [
       if (!movie) {
         return res.status(404).json({ message: 'Movie not found' });
       }
-      res.status(200).json(movie);
+      return res.status(200).json(movie); // Ensure you return here
     } catch (error) {
       next(error);
     }
