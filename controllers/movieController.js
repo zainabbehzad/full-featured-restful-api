@@ -1,5 +1,5 @@
 const { body, validationResult } = require('express-validator');
-const Movie = require('../models/Movie.js');
+const Movie = require('../models/Movie'); // Removed .js extension
 
 // Fetch all movies with pagination, filtering, and sorting
 const getMovies = async (req, res, next) => {
@@ -16,7 +16,7 @@ const getMovies = async (req, res, next) => {
       .skip((page - 1) * limit);
 
     const count = await Movie.countDocuments(query);
-    res.status(200).json({
+    return res.status(200).json({ // Added return
       totalPages: Math.ceil(count / limit),
       currentPage: page,
       movies,
@@ -33,7 +33,7 @@ const getMovieById = async (req, res, next) => {
     if (!movie) {
       return res.status(404).json({ message: 'Movie not found' });
     }
-    res.status(200).json(movie);
+    return res.status(200).json(movie); // Added return
   } catch (error) {
     next(error);
   }
@@ -53,7 +53,7 @@ const addMovie = [
     try {
       const movie = new Movie(req.body);
       await movie.save();
-      return res.status(201).json(movie); // Ensure you return here
+      return res.status(201).json(movie); // Ensure return
     } catch (error) {
       next(error);
     }
@@ -76,7 +76,7 @@ const updateMovie = [
       if (!movie) {
         return res.status(404).json({ message: 'Movie not found' });
       }
-      return res.status(200).json(movie); // Ensure you return here
+      return res.status(200).json(movie); // Ensure return
     } catch (error) {
       next(error);
     }
@@ -90,7 +90,7 @@ const deleteMovie = async (req, res, next) => {
     if (!movie) {
       return res.status(404).json({ message: 'Movie not found' });
     }
-    res.status(204).send();
+    res.status(204).send(); // No return needed here
   } catch (error) {
     next(error);
   }

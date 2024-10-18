@@ -1,16 +1,16 @@
-// routes/movieRoutes.js
 const express = require('express');
 const Movie = require('../models/movieModel');
+
 const router = express.Router();
 
 // Fetch all movies
-router.get("/", async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const movies = await Movie.find();
-    res.json(movies);
+    return res.json(movies); // Added return
   } catch (error) {
     console.error('Error fetching movies:', error);
-    res.status(500).json({ message: 'Error fetching movies' });
+    return res.status(500).json({ message: 'Error fetching movies' }); // Added return
   }
 });
 
@@ -21,10 +21,10 @@ router.get('/:id', async (req, res) => {
     if (!movie) {
       return res.status(404).json({ message: 'Movie not found' });
     }
-    res.json(movie);
+    return res.json(movie); // Added return
   } catch (error) {
     console.error('Error fetching movie:', error);
-    res.status(500).json({ message: 'Error fetching movie' });
+    return res.status(500).json({ message: 'Error fetching movie' }); // Added return
   }
 });
 
@@ -32,10 +32,10 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const newMovie = await Movie.create(req.body);
-    res.status(201).json(newMovie);
+    return res.status(201).json(newMovie); // Added return
   } catch (error) {
     console.error('Error creating movie:', error);
-    res.status(400).json({ message: 'Error creating movie"' });
+    return res.status(400).json({ message: 'Error creating movie' }); // Fixed quote
   }
 });
 
@@ -49,10 +49,10 @@ router.put('/:id', async (req, res) => {
     if (!updatedMovie) {
       return res.status(404).json({ message: 'Movie not found' });
     }
-    res.json(updatedMovie);
+    return res.json(updatedMovie); // Added return
   } catch (error) {
     console.error('Error updating movie:', error);
-    res.status(400).json({ message: 'Error updating movie' });
+    return res.status(400).json({ message: 'Error updating movie' }); // Added return
   }
 });
 
@@ -63,10 +63,10 @@ router.delete('/:id', async (req, res) => {
     if (!deletedMovie) {
       return res.status(404).json({ message: 'Movie not found' });
     }
-    res.status(204).json({ message: 'Movie deleted' });
+    return res.status(204).send(); // No content to return
   } catch (error) {
     console.error('Error deleting movie:', error);
-    res.status(500).json({ message: 'Error deleting movie' });
+    return res.status(500).json({ message: 'Error deleting movie' }); // Added return
   }
 });
 
